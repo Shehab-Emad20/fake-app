@@ -1,5 +1,3 @@
-// models/product.dart
-
 class Product {
   final int id;
   final String name;
@@ -15,19 +13,12 @@ class Product {
     required this.imageUrl,
   });
 
-  /// Create Product from JSON, handling multiple formats (FakeStore or custom).
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id:
-          json['id'] is int
-              ? json['id']
-              : int.tryParse(json['id'].toString()) ?? 0,
+      id: json['id'] is int ? json['id'] : int.tryParse(json['id'].toString()) ?? 0,
       name: json['title'] ?? json['name'] ?? 'Unknown',
       description: json['description'] ?? 'No description',
-      price:
-          json['price'] is num
-              ? (json['price'] as num).toDouble()
-              : double.tryParse(json['price'].toString()) ?? 0.0,
+      price: json['price'] is num ? (json['price'] as num).toDouble() : double.tryParse(json['price'].toString()) ?? 0.0,
       imageUrl: json['image'] ?? json['imageUrl'] ?? '',
     );
   }
