@@ -1,8 +1,7 @@
+import 'package:app/widgets/listView_wideget.dart';
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../services/product_service.dart';
-import '../widgets/product_card.dart';
-import 'product_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,27 +32,11 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: Text('No products found.'));
           }
           final products = snapshot.data!;
-          return ListView.separated(
-            padding: const EdgeInsets.all(16),
-            itemCount: products.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return ProductCard(
-                product: product,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ProductDetailsScreen(product: product),
-                    ),
-                  );
-                },
-              );
-            },
-          );
+          return ListViewWideget(products: products);
         },
       ),
     );
   }
 }
+
+
